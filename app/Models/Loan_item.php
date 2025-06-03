@@ -11,6 +11,8 @@ class Loan_item extends Model
 {
     use HasFactory;
 
+    protected $table = 'loan_items';
+
     protected $fillable = [
         'loan_id',
         'item_id',

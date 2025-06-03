@@ -18,7 +18,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
 
-        return view('data_category', compact('categories'));
+        return view('Categories.data_category', compact('categories'));
     }
 
     public function create_category(request $category)
@@ -38,13 +38,13 @@ class CategoryController extends Controller
     public function show_create_category()
     {
         $categories = Category::all();
-        return view('create_category', compact('categories'));
+        return view('Categories.create_category', compact('categories'));
     }
 
     public function show_edit_category(Category $category)
     {
         $categories = Category::all();
-        return view('edit_category', compact('category', 'categories'));
+        return view('Categories.edit_category', compact('category', 'categories'));
     }
 
     public function edit_category(Request $request, Category $category)
@@ -57,12 +57,22 @@ class CategoryController extends Controller
             ->with('success', 'Kategori berhasil diperbarui');
     }
 
-    public function destroy_category(Category $category)
+    public function destroy_category($id)
     {
+
+        $category = Category::findOrFail($id);
+
+        if ($category->item()->exists()) {
+            return redirect()->route('categories')
+                ->with('error', 'Kategori tidak bisa dihapus karena masih memiliki item.');
+        }
+
 
         $category->delete();
 
         return redirect()->route('categories')
             ->with('success', 'Kategori berhasil dihapus');
     }
+
+
 }

@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('admin_id')->nullable()->constrained();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('admin_id')->nullable()->constrained('admins');
             $table->datetime('loan_date');
             $table->datetime('return_date')->nullable();
-            $table->enum('status', ['pending', 'approved', 'rejected', 'returned'])->default('pending');
+            $table->enum('status', ['ditunda', 'disetujui', 'ditolak', 'dikembalikan'])->default('ditunda');
+            $table->text('reason');
             $table->timestamps();
         });
     }

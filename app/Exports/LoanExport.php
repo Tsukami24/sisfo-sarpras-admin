@@ -5,8 +5,9 @@ namespace App\Exports;
 use App\Models\Loan;
 use App\Models\Loan_item;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class LoanExport implements FromCollection
+class LoanExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -29,6 +30,6 @@ class LoanExport implements FromCollection
 
     public function headings(): array
     {
-        return ['Loan ID', 'Nama Peminjam', 'Nama Item', 'Jumlah', 'Tanggal Pinjam'];
+        return ['Loan ID', 'Nama Peminjam', 'Nama Item', 'Jumlah', 'Tanggal Pinjam', 'Perkiraan Kembali'];
     }
 }

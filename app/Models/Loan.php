@@ -11,12 +11,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Loan extends Model
 {
+
+    protected $table = 'loans';
     protected $fillable = [
         'user_id',
         'admin_id',
         'loan_date',
         'return_date',
-        'status'
+        'status',
+        'reason'
     ];
 
     public function user()

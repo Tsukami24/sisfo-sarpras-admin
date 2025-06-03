@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
@@ -27,18 +28,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
 
     // category
-    Route::get('/category', [ItemController::class, 'category']);
+    Route::get('/category', [CategoryController::class, 'category']);
 
     // item
-
+    Route::get('/item', [ItemController::class, 'item']);
 
     // loan
     Route::post('/loan', [LoanController::class, 'create_loan']);
     Route::get('/loans', [LoanController::class, 'loan']);
 
     // Return
+    Route::post('/returns', [ReturnController::class, 'return']);
 });
-Route::get('/item', [ItemController::class, 'item']);
-Route::post('/returns', [ReturnController::class, 'return']);
+
 
 

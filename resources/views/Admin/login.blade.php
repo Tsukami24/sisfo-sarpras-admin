@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title>Masuk</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .gradient-custom {
-            background: rgb(0, 97, 215);
+            background: #0061d7;
             background: linear-gradient(to right, rgb(0, 97, 215), rgba(0, 97, 215));
         }
 
@@ -31,22 +31,20 @@
                                 <img src="https://smktarunabhakti.net/wp-content/uploads/2020/07/logotbvector-copy.png"
                                     alt="Logo" class="logo">
 
-                                <h2 class="fw-bold mb-2 text-uppercase">Sign In</h2>
-                                <p class="text-black-50 mb-3">Please enter your username and password!</p>
+                                <h2 class="fw-bold mb-2 text-uppercase">Masuk</h2>
+                                <p class="text-black-50 mb-3">Silakan masukkan nama pengguna dan kata sandi Anda!</p>
 
                                 <div class="form-outline form-white mb-4">
                                     <input type="text" id="name" name="name"
-                                        class="form-control form-control-lg" required />
-                                    <label class="form-label" for="name">Username</label>
+                                        class="form-control form-control-lg" placeholder="Nama" required />
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
                                     <input type="password" id="password" name="password"
-                                        class="form-control form-control-lg" required />
-                                    <label class="form-label" for="password">Password</label>
+                                        class="form-control form-control-lg" placeholder="Kata Sandi" required />
                                 </div>
 
-                                <button class="btn btn-outline-primary btn-lg px-5" type="submit">Sign In</button>
+                                <button class="btn btn-outline-primary btn-lg px-5" type="submit">Masuk</button>
 
                                 <div class="mt-3" id="message">
                                     @if(session('error'))

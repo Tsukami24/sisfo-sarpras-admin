@@ -38,7 +38,7 @@ class AdminController extends Controller
     public function approve($id)
     {
         $loan = Loan::findOrFail($id);
-        $loan->status = 'approved';
+        $loan->status = 'disetujui';
         $loan->admin_id = auth('admin')->id();
         $loan->save();
 
@@ -48,7 +48,7 @@ class AdminController extends Controller
     public function reject($id)
     {
         $loan = Loan::findOrFail($id);
-        $loan->status = 'rejected';
+        $loan->status = 'ditolak';
         $loan->admin_id = auth('admin')->id();
         $loan->save();
 
@@ -58,7 +58,7 @@ class AdminController extends Controller
     public function return(Request $request, $id)
     {
         $request->validate([
-            'condition' => 'required|in:good,damaged,lost',
+            'condition' => 'required|in:baik,rusak,hilang   ',
             'fine' => 'required|integer|min:0',
         ]);
 
@@ -69,13 +69,12 @@ class AdminController extends Controller
             'admin_id' => Auth::guard('admin')->id(),
         ]);
 
-        // Cek apakah semua item sudah dikonfirmasi
         $unconfirmed = Return_item::where('loan_id', $returnItem->loan_id)
             ->whereNull('admin_id')->count();
 
         if ($unconfirmed === 0) {
             $loan = Loan::find($returnItem->loan_id);
-            $loan->status = 'returned';
+            $loan->status = 'dikembalikan';
             $loan->save();
         }
 

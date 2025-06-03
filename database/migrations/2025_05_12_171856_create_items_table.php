@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->text('image');
             $table->foreignId('admin_id')->constrained('admins');
-            $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
             $table->timestamps();
         });
     }

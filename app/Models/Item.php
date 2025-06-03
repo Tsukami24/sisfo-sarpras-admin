@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Item extends Model
 {
     use HasFactory;
+
+    protected $table = 'items';
     protected $fillable = [
         'name',
         'stock',

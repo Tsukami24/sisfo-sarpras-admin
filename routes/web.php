@@ -11,7 +11,7 @@ use App\Http\Controllers\DashboardController;
 
 // auth
 
-Route::get('/', function () {return view('login');})->name('get.login');
+Route::get('/', function () {return view('Admin.login');})->name('get.login');
 
 Route::post('/', [AdminController::class, 'login'])->name('login');
 
@@ -77,4 +77,12 @@ Route::delete('/category/{category}', [CategoryController::class, 'destroy_categ
     // Return
 
     Route::get('/returns', [ReturnController::class, 'data_return'])->name('returns');
+    Route::get('returns/export/', [ReturnController::class, 'export']);
+
+    // Report
+
+    Route::get('/report-users', [UserController::class, 'show_report'])->name('users.report');
+    Route::get('/report-items', [ItemController::class, 'show_report'])->name('items.report');
+    Route::get('/report-loans', [LoanController::class, 'show_report'])->name('loans.report');
+    Route::get('/report-returns', [ReturnController::class, 'show_report'])->name('returns.report');
 });

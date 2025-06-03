@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('loan_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('loan_id')->constrained();
-            $table->foreignId('item_id')->constrained();
+            $table->foreignId('item_id')->nullable()->constrained('items')->onDelete('set null');
             $table->integer('quantity');
             $table->timestamps();
         });

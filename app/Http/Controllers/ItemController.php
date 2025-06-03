@@ -14,7 +14,7 @@ class ItemController extends Controller
 {
     public function item(Request $request)
     {
-        $items = Item::all()->map(function ($item) {
+        $items = Item::with('category')->get()->map(function ($item) {
             $item->image_url = Storage::url($item->image);
             return $item;
         });
@@ -23,10 +23,18 @@ class ItemController extends Controller
     }
 
 
+
     public function show()
     {
         $items = Item::all();
-        return view('data_item', compact('items'));
+        return view('Items.data_item', compact('items'));
+    }
+
+    public function show_report()
+    {
+        $items = Item::all();
+
+        return view('Items.report_item', compact('items'));
     }
 
     public function create_item(request $item)
@@ -59,7 +67,7 @@ class ItemController extends Controller
     {
         // $admins = Admin::all();
         $categories = Category::all();
-        return view('create_item', compact('categories'));
+        return view('Items.create_item', compact('categories'));
     }
 
     public function edit_item(Request $request, Item $item)
@@ -89,11 +97,22 @@ class ItemController extends Controller
     {
         // $admins = Admin::all();
         $categories = Category::all();
-        return view('edit_item', compact('item','categories'));
+        return view('Items.edit_item', compact('item','categories'));
     }
 
-    public function destroy_item(Item $item)
+    public function destroy_item($id)
     {
+        $item = Item::findOrFail($id);
+
+        $hasActiveLoans = $item->loan()
+            ->whereIn('status', ['ditunda', 'disetujui'])
+            ->exists();
+
+        if ($hasActiveLoans) {
+            return redirect()->route('items')
+                ->with('error', 'Barang tidak bisa dihapus karena sedang dalam proses peminjaman.');
+        }
+
         Storage::disk('public')->delete($item->image);
 
         $item->delete();

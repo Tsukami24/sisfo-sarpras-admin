@@ -19,16 +19,22 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('data_user', compact('users'));
+        return view('Users.data_user', compact('users'));
+    }
+
+    public function show_report()
+    {
+        $users = User::all();
+
+        return view('Users.report_user', compact('users'));
     }
 
     public function create(request $requst)
     {
         $user = User::all();
-        return view('create_user');
+        return view('Users.create_user');
     }
 
-    // buat akun user
     public function register(Request $request)
     {
         $request->validate([

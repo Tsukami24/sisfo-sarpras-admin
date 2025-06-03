@@ -14,6 +14,6 @@ class DashboardController extends Controller
         $users = User::count();
         $loans = Loan_item::count();
         $returns = Return_item::count();
-        return view('dashboard', compact('users','loans','returns'));
+        return view('Admin.dashboard', compact('users', 'loans', 'returns'));
     }
 }

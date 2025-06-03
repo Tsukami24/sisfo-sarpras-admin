@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('loan_id')->constrained();
             $table->foreignId('admin_id')->nullable()->constrained();
-            $table->foreignId('item_id')->constrained();
+            $table->foreignId('item_id')->nullable()->constrained('items')->nullOnDelete();
             $table->integer('quantity');
-            $table->enum('condition', ['good', 'damaged', 'lost'])->default('good');
+            $table->enum('condition', ['baik', 'rusak', 'hilang'])->default('baik');
             $table->decimal('fine', 10, 2)->default(0);
             $table->timestamp('returned_date')->nullable();
             $table->timestamps();
