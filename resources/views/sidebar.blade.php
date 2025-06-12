@@ -249,7 +249,7 @@ img.logo {
 
             <!-- Grup: Manajemen Data -->
             <div class="mt-3 pl-3 text-white font-weight-bold">Menu Utama</div>
-            <a href="{{ route('dashboard') }}" class="pl-4"><i class="fas fa-tachometer-alt"></i> Dasbor</a>
+            <a href="{{ route('dashboard') }}" class="pl-4"><i class="fas fa-home"></i> Dasbor</a>
             <a href="{{ route('loans') }}" class="pl-4"><i class="fas fa-hand-holding"></i> Peminjaman</a>
             <a href="{{ route('returns') }}" class="pl-4"><i class="fas fa-undo-alt"></i> Pengembalian</a>
 

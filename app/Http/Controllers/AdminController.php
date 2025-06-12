@@ -35,25 +35,25 @@ class AdminController extends Controller
         return redirect('/');
     }
 
-    public function approve($id)
-    {
-        $loan = Loan::findOrFail($id);
-        $loan->status = 'disetujui';
-        $loan->admin_id = auth('admin')->id();
-        $loan->save();
+        public function approve($id)
+        {
+            $loan = Loan::findOrFail($id);
+            $loan->status = 'disetujui';
+            $loan->admin_id = auth('admin')->id();
+            $loan->save();
 
-        return redirect()->back()->with('success', 'Peminjaman disetujui.');
-    }
+            return redirect()->back()->with('success', 'Peminjaman disetujui.');
+        }
 
-    public function reject($id)
-    {
-        $loan = Loan::findOrFail($id);
-        $loan->status = 'ditolak';
-        $loan->admin_id = auth('admin')->id();
-        $loan->save();
+        public function reject($id)
+        {
+            $loan = Loan::findOrFail($id);
+            $loan->status = 'ditolak';
+            $loan->admin_id = auth('admin')->id();
+            $loan->save();
 
-        return redirect()->back()->with('success', 'Peminjaman ditolak.');
-    }
+            return redirect()->back()->with('success', 'Peminjaman ditolak.');
+        }
 
     public function return(Request $request, $id)
     {
@@ -80,9 +80,6 @@ class AdminController extends Controller
 
         return back()->with('success', 'Item berhasil dikonfirmasi.');
     }
-
-
-
 
     public function ReturnDate(Request $request, $id)
     {

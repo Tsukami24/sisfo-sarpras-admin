@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->enum('condition', ['baik', 'rusak', 'hilang'])->default('baik');
             $table->decimal('fine', 10, 2)->default(0);
-            $table->timestamp('returned_date')->nullable();
+            $table->datetime('returned_date')->nullable();
             $table->timestamps();
         });
     }
